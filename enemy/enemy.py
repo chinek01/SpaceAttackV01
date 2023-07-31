@@ -14,6 +14,7 @@ from turtle import Turtle, Screen
 from time import sleep
 import keyboard
 from random import randint
+from bullet.bullet import Bullet
 
 
 BLOCK_COLORS = ["#69345F",
@@ -66,6 +67,22 @@ class Enemy(Turtle):
         self._max_left_pos = -self._screen_width / 2 + 20
         self._max_right_pos = self._screen_width / 2 - 20
 
+    def move(self):
+        new_x = self.xcor() - self._move_distance
+        if new_x <= self._max_left_pos:
+            self._bounce()
+
+        if new_x >= self._max_right_pos:
+            self._bounce()
+
+        self.goto(
+            new_x,
+            self.start_pos_y
+        )
+
+    def _bounce(self):
+        self._move_distance *= -1
+
 
 # some tests
 if __name__ == '__main__':
@@ -80,7 +97,7 @@ if __name__ == '__main__':
     screen.bgcolor('#727272')
     screen.tracer(0)
 
-    x = Enemy(move_distance=15)
+    x = Enemy(move_distance=2)
 
     screen.listen()
 
@@ -98,12 +115,13 @@ if __name__ == '__main__':
         screen.update()
         sleep(0.016)
 
-        if len(x.bullets) > 0:
-            for bullet in x.bullets:
-                if bullet.get_max_flag() is False:
-                    bullet.fire()
-                else:
-                    del x.bullets[0]
+        # if len(x.bullets) > 0:
+        #     for bullet in x.bullets:
+        #         if bullet.get_max_flag() is False:
+        #             bullet.fire()
+        #         else:
+        #             del x.bullets[0]
+        x.move()
 
         # to break loop
         if keyboard.is_pressed('p'):
