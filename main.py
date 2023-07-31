@@ -125,11 +125,15 @@ while True:
                         enemies[index].hideturtle()
                         enemies[index].reset()
                         enemies[index].color(SCREEN_BG_COLOR)
-                        # enemie[index].hideturtle()
-                        # del(enemie[index])
                         enemies.pop(index)
                         is_target_hit = True
                         scoreboard.set_curr_score()
+                        # todo: remove enemie bullet if its fire
+                        # todo: life down
+                        # todo: new game
+                        # todo: poprawić tworzenie wrogów
+                        # todo: wyświetlić tabeli wyników z max
+                        # todo: do dzieła
                         break
 
             if is_target_hit is True:
