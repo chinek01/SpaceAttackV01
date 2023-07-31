@@ -63,13 +63,19 @@ def none_check(func):
     return wrapper
 
 
-class Hero:
+class Hero(Turtle):
 
     def __init__(self,
                  screen_width=1024,
                  screen_height=768,
                  color='white',
                  move_distance=80):
+        super().__init__()
+        self.shape('turtle')
+        self.shapesize(2, 1)
+        self.penup()
+        self.color(COLOR)
+        self.left(90)
         self._screen_width = screen_width
         self._screen_height = screen_height
         self._color = color
@@ -81,21 +87,7 @@ class Hero:
         self._max_right_pos = 0
         self._move_distance = move_distance
 
-        self._body = []
-
         self._max_left_right()
-
-        self.my_hero()
-
-    def my_hero(self):
-        h = Turtle()
-        h.shape('turtle')
-        h.shapesize(2, 1)
-        h.penup()
-        h.color(COLOR)
-        h.goto(0, 0)
-        h.left(90)
-        self._body.append(h)
 
     def get_move_distance(self):
         return self._move_distance
