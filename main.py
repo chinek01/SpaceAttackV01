@@ -104,23 +104,44 @@ screen.onkey(key='Up', fun=hero.fire_bullet)
 while True:
     screen.update()
     sleep(0.016)
-
-    # hero fire
-    if len(hero.bullets) > 0:
-        for bullet in hero.bullets:
-            if bullet.get_max_flag() is False:
-                bullet.fire()
-            else:
-                del hero.bullets[0]
+    # sleep(0.05)
 
     for enemie in enemies:
         enemie.move()
         if enemie.get_fire_flag() is True:
-            if enemie.my_bullet.distance(hero) < 20:
+            if enemie.my_bullet.distance(hero) < 15:
                 print("You was kill")
                 game_core.loose_life()
 
-    # todo: collision detector
+    # hero fire
+    if len(hero.bullets) > 0:
+        for bullet_idx in range(len(hero.bullets)):
+
+            is_target_hit = False
+
+            if len(enemies) > 0:
+                for index in range(len(enemies)):
+                    if hero.bullets[bullet_idx].distance(enemies[index]) < 15:
+                        enemies[index].hideturtle()
+                        enemies[index].reset()
+                        enemies[index].color(SCREEN_BG_COLOR)
+                        # enemie[index].hideturtle()
+                        # del(enemie[index])
+                        enemies.pop(index)
+                        is_target_hit = True
+                        scoreboard.set_curr_score()
+                        break
+
+            if is_target_hit is True:
+                hero.bullets[bullet_idx].reset()
+                hero.bullets[bullet_idx].hideturtle()
+                hero.bullets[bullet_idx].set_max_flag(True)
+
+            if hero.bullets[bullet_idx].get_max_flag() is False:
+                hero.bullets[bullet_idx].fire()
+            else:
+                del hero.bullets[bullet_idx]
+                break
 
     # press 'p' to break loop
     if keyboard.is_pressed('p'):
