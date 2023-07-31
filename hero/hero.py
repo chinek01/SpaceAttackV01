@@ -10,7 +10,6 @@ Hero class
 
 """
 
-import turtle
 from turtle import Turtle, Screen
 from time import sleep
 import keyboard
@@ -70,7 +69,7 @@ class Hero(Turtle):
                  screen_width=1024,
                  screen_height=768,
                  color=None,
-                 move_distance=80):
+                 move_distance=15):
         super().__init__()
         self.shape('turtle')
         self.shapesize(2, 1)
@@ -84,7 +83,7 @@ class Hero(Turtle):
         self._screen_height = screen_height
 
         # start position
-        self._y_pos = -self._screen_height / 2 + 30
+        self._y_pos = -self._screen_height / 2 + 150
         self._x_pos_start = 0
         self._max_left_pos = 0
         self._max_right_pos = 0
