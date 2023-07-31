@@ -16,7 +16,7 @@ import keyboard
 
 FONT = ("Arial", 14, "normal")
 ALIGN = "center"
-FRAME_COLOR = 'green'
+FRAME_COLOR = 'white'
 
 
 def int_check(func):
