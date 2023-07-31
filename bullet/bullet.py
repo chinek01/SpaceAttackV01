@@ -58,6 +58,17 @@ class Bullet(Turtle):
     def get_max_flag(self):
         return self.max_flag
 
+    def set_max_flag(self,
+                     flag):
+
+        if flag is None:
+            raise ValueError("The Flag value must be set!")
+
+        if not isinstance(flag, bool):
+            raise TypeError("The Flag value must be Bool type!")
+
+        self.max_flag = flag
+
     def max_xy(self):
         self.max_top_y = self.screen_height/2 + 20
         self.max_down_y = -self.screen_height/2 - 20
