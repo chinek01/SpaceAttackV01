@@ -90,6 +90,7 @@ class Enemy(Turtle):
                 self.my_bullet.fire()
             else:
                 del self.my_bullet
+                self._fire_flag = False
                 self.my_bullet = None
 
     def get_fire_flag(self):
