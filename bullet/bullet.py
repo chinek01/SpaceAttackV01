@@ -84,7 +84,7 @@ if __name__ == '__main__':
     screen.tracer(0)
 
     x = Bullet(direction='up',
-               speed=10,
+               speed=4,
                screen_width=width,
                screen_height=height)
 
@@ -96,7 +96,7 @@ if __name__ == '__main__':
 
     while x.get_max_flag() is False:
         screen.update()
-        sleep(0.1)
+        sleep(0.016)
 
         if keyboard.is_pressed('space'):
             fire_flag = True
