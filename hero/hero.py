@@ -69,17 +69,19 @@ class Hero(Turtle):
     def __init__(self,
                  screen_width=1024,
                  screen_height=768,
-                 color='white',
+                 color=None,
                  move_distance=80):
         super().__init__()
         self.shape('turtle')
         self.shapesize(2, 1)
         self.penup()
-        self.color(COLOR)
+        if color is None:
+            self.color(COLOR)
+        else:
+            self.color(color)
         self.left(90)
         self._screen_width = screen_width
         self._screen_height = screen_height
-        self._color = color
 
         # start position
         self._y_pos = -self._screen_height / 2 + 30
