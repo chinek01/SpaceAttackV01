@@ -14,6 +14,7 @@ import turtle
 from turtle import Turtle, Screen
 from time import sleep
 import keyboard
+from bullet.bullet import Bullet
 
 COLOR = 'yellow'
 
@@ -92,6 +93,19 @@ class Hero(Turtle):
         )
 
         self._max_left_right()
+        self.bullets = []
+
+    def fire_bullet(self):
+
+        flare = Bullet(direction='up',
+                       speed=4,
+                       screen_width=self._screen_width,
+                       screen_height=self._screen_height,
+                       start_pos_x=self.xcor(),
+                       start_pos_y=self.ycor()+20)
+
+        self.bullets.append(flare)
+        print(len(self.bullets))
 
     def get_move_distance(self):
         return self._move_distance
@@ -147,10 +161,19 @@ if __name__ == '__main__':
     screen.onkey(key='Right', fun=x.move_right)
 
     # Fire missle
+    screen.onkey(key='space', fun=x.fire_bullet)
+    screen.onkey(key='Up', fun=x.fire_bullet)
 
     while True:
         screen.update()
         sleep(0.016)
+
+        if len(x.bullets) > 0:
+            for bullet in x.bullets:
+                if bullet.get_max_flag() is False:
+                    bullet.fire()
+                else:
+                    del x.bullets[0]
 
         # to break loop
         if keyboard.is_pressed('p'):

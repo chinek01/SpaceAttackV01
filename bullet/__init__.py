@@ -1,1 +1,1 @@
-from .bullet import Bullet
+from .bullet import *

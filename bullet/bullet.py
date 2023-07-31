@@ -50,6 +50,10 @@ class Bullet(Turtle):
         self.max_down_y = None
         self.max_xy()
         self.max_flag = False
+        self.goto(
+            self.start_pos_x,
+            self.start_pos_y
+        )
 
     def get_max_flag(self):
         return self.max_flag
