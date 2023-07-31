@@ -106,8 +106,14 @@ class Hero:
         self._move_distance = move_distance
 
     def _max_left_right(self):
-        self._max_left_pos = self._screen_width / 2 + 20
+        self._max_left_pos = -self._screen_width / 2 + 20
         self._max_right_pos = self._screen_width / 2 - 20
+
+    def move_left(self):
+        pass
+
+    def move_right(self):
+        pass
 
 
 # some test
