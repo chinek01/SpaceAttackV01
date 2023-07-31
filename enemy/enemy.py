@@ -63,6 +63,38 @@ class Enemy(Turtle):
 
         self._max_left_right()
 
+        # bullet time
+        self.my_bullet: Bullet = None
+        self._fire_flag = False
+
+    def _fire_bullet(self):
+
+        if self.my_bullet is None:
+
+            if randint(0, 1000) >= 990:
+
+                flare = Bullet(
+                    direction='down',
+                    speed=3,
+                    screen_width=self._screen_width,
+                    screen_height=self._screen_height,
+                    start_pos_x=self.xcor(),
+                    start_pos_y=self.ycor()-20
+                )
+
+                self.my_bullet = flare
+                self._fire_flag = True
+
+        else:
+            if self.my_bullet.get_max_flag() is False:
+                self.my_bullet.fire()
+            else:
+                del self.my_bullet
+                self.my_bullet = None
+
+    def get_fire_flag(self):
+        return self._fire_flag
+
     def _max_left_right(self):
         self._max_left_pos = -self._screen_width / 2 + 20
         self._max_right_pos = self._screen_width / 2 - 20
@@ -79,6 +111,8 @@ class Enemy(Turtle):
             new_x,
             self.start_pos_y
         )
+
+        self._fire_bullet()
 
     def _bounce(self):
         self._move_distance *= -1

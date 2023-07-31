@@ -107,7 +107,6 @@ class Hero(Turtle):
                        start_pos_y=self.ycor()+20)
 
         self.bullets.append(flare)
-        print(len(self.bullets))
 
     def get_move_distance(self):
         return self._move_distance
