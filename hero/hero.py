@@ -86,6 +86,10 @@ class Hero(Turtle):
         self._max_left_pos = 0
         self._max_right_pos = 0
         self._move_distance = move_distance
+        self.goto(
+            self._x_pos_start,
+            self._y_pos
+        )
 
         self._max_left_right()
 
@@ -102,10 +106,21 @@ class Hero(Turtle):
         self._max_right_pos = self._screen_width / 2 - 20
 
     def move_left(self):
-        pass
+        new_x = self.xcor() - self._move_distance
+        if new_x >= self._max_left_pos:
+            self._move(new_x)
 
     def move_right(self):
-        pass
+        new_x = self.xcor() + self._move_distance
+        if new_x <= self._max_right_pos:
+            self._move(new_x)
+
+    def _move(self,
+              new_x):
+        self.goto(
+            new_x,
+            self._y_pos
+        )
 
 
 # some test
@@ -121,15 +136,21 @@ if __name__ == '__main__':
     screen.bgcolor('#727272')
     screen.tracer(0)
 
-    x = Hero()
+    x = Hero(move_distance=15)
 
     screen.listen()
 
     # move left and right func
+    screen.onkey(key='a', fun=x.move_left)
+    screen.onkey(key='Left', fun=x.move_left)
+    screen.onkey(key='d', fun=x.move_right)
+    screen.onkey(key='Right', fun=x.move_right)
+
+    # Fire missle
 
     while True:
         screen.update()
-        sleep(0.01)
+        sleep(0.016)
 
         # to break loop
         if keyboard.is_pressed('p'):
