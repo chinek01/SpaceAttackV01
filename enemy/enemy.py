@@ -36,7 +36,7 @@ class Enemy(Turtle):
                  screen_width=1024,
                  screen_height=768,
                  color='white',
-                 move_distance=10,
+                 move_distance=2,
                  start_pos_x=0,
                  start_pos_y=0):
         super().__init__()
@@ -71,7 +71,7 @@ class Enemy(Turtle):
 
         if self.my_bullet is None:
 
-            if randint(0, 1000) >= 990:
+            if randint(0, 10000) <= 10:
 
                 flare = Bullet(
                     direction='down',
@@ -131,7 +131,20 @@ if __name__ == '__main__':
     screen.bgcolor('#727272')
     screen.tracer(0)
 
-    x = Enemy(move_distance=2)
+    # x = Enemy(move_distance=2)
+
+    xx = []
+
+    for row in range(5):
+        y_pos = int(height/2 - 50 - 50 * row)
+        for col in range(15):
+            x_pos = int(-width/2 + 50 + 50 * col)
+            x = Enemy(
+                start_pos_x=x_pos,
+                start_pos_y=y_pos,
+                color=BLOCK_COLORS[row]
+            )
+            xx.append(x)
 
     screen.listen()
 
@@ -149,13 +162,11 @@ if __name__ == '__main__':
         screen.update()
         sleep(0.016)
 
-        # if len(x.bullets) > 0:
-        #     for bullet in x.bullets:
-        #         if bullet.get_max_flag() is False:
-        #             bullet.fire()
-        #         else:
-        #             del x.bullets[0]
-        x.move()
+        # x.move()
+
+        # move loop
+        for item in xx:
+            item.move()
 
         # to break loop
         if keyboard.is_pressed('p'):
