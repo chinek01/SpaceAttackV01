@@ -1,0 +1,16 @@
+"""
+
+Portfolio: SpaceAttack Game
+#100DaysOfCode with Python
+Day: 93
+Date: 2023-07-28
+Author: MC
+
+Game Core class
+
+"""
+
+
+class Game_core:
+
+    pass
