@@ -134,6 +134,7 @@ while game_core.get_game_over_flag():
                     game_core.cur_life
                 )
                 scoreboard.refresh()
+                hero.reset_hero()
                 break
 
     # hero fire
@@ -158,9 +159,6 @@ while game_core.get_game_over_flag():
                         enemies.pop(index)
                         is_target_hit = True
                         scoreboard.set_curr_score()
-                        # todo: new game
-                        # todo: wyświetlić tabeli wyników z max
-                        # todo: do dzieła
                         break
 
             if is_target_hit is True:

@@ -98,6 +98,12 @@ class Hero(Turtle):
         self._max_hero_bullets = max_hero_bullets
         self.bullets = []
 
+    def reset_hero(self):
+        self.goto(
+            self._x_pos_start,
+            self._y_pos
+        )
+
     def fire_bullet(self):
 
         if len(self.bullets) < self._max_hero_bullets:
