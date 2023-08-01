@@ -69,7 +69,8 @@ class Hero(Turtle):
                  screen_width=1024,
                  screen_height=768,
                  color=None,
-                 move_distance=15):
+                 move_distance=15,
+                 max_hero_bullets=5):
         super().__init__()
         self.shape('turtle')
         self.shapesize(2, 1)
@@ -94,18 +95,21 @@ class Hero(Turtle):
         )
 
         self._max_left_right()
+        self._max_hero_bullets = max_hero_bullets
         self.bullets = []
 
     def fire_bullet(self):
 
-        flare = Bullet(direction='up',
-                       speed=4,
-                       screen_width=self._screen_width,
-                       screen_height=self._screen_height,
-                       start_pos_x=self.xcor(),
-                       start_pos_y=self.ycor()+20)
+        if len(self.bullets) < self._max_hero_bullets:
 
-        self.bullets.append(flare)
+            flare = Bullet(direction='up',
+                           speed=4,
+                           screen_width=self._screen_width,
+                           screen_height=self._screen_height,
+                           start_pos_x=self.xcor(),
+                           start_pos_y=self.ycor()+20)
+
+            self.bullets.append(flare)
 
     def get_move_distance(self):
         return self._move_distance

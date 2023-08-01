@@ -28,6 +28,7 @@ SCREEN_BG_COLOR = "#727272"
 
 ROWS = 7
 COLS = 7
+MAX_HERO_BULLETS = 5
 BLOCK_COLORS = ["#69345F",
                 "#171D69",
                 "#B57952",
@@ -69,6 +70,8 @@ scoreboard.refresh()
 hero = Hero(
     screen_width=SCREEN_WIDTH,
     screen_height=SCREEN_HEIGHT,
+    move_distance=20,
+    max_hero_bullets=MAX_HERO_BULLETS
 )
 
 # ------------------------------ init enemies ------------------------------
