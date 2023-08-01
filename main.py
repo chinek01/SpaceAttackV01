@@ -109,10 +109,13 @@ screen.onkey(key='Right', fun=hero.move_right)
 screen.onkey(key='space', fun=hero.fire_bullet)
 screen.onkey(key='Up', fun=hero.fire_bullet)
 
-while True:
+while game_core.get_game_over_flag():
     screen.update()
     sleep(0.016)
     # sleep(0.05)
+
+    if len(enemies) == 0:
+        create_enemies()
 
     for enemie in enemies:
         enemie.move()
