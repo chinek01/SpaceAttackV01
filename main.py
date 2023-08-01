@@ -78,16 +78,17 @@ for row in range(ROWS):
     y_pos = int(SCREEN_HEIGHT/2 - 50 - 50 * row)
     x_pos = int(-SCREEN_HEIGHT/2 + randint(0, 150))
     for col in range(COLS):
-        x_pos = x_pos+ 50 * col
-        enemies.append(
-            Enemy(
-                screen_width=SCREEN_WIDTH,
-                screen_height=SCREEN_HEIGHT,
-                color=BLOCK_COLORS[row],
-                start_pos_x=x_pos,
-                start_pos_y=y_pos
+        x_pos = x_pos + 50 * col
+        if x_pos < SCREEN_WIDTH/2 - 40:
+            enemies.append(
+                Enemy(
+                    screen_width=SCREEN_WIDTH,
+                    screen_height=SCREEN_HEIGHT,
+                    color=BLOCK_COLORS[row],
+                    start_pos_x=x_pos,
+                    start_pos_y=y_pos
+                )
             )
-        )
 
 # ------------------------------ main loop ------------------------------
 
@@ -141,7 +142,6 @@ while True:
                         is_target_hit = True
                         scoreboard.set_curr_score()
                         # todo: new game
-                        # todo: poprawić tworzenie wrogów
                         # todo: wyświetlić tabeli wyników z max
                         # todo: do dzieła
                         break
