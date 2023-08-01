@@ -111,7 +111,12 @@ while True:
         if enemie.get_fire_flag() is True:
             if enemie.my_bullet.distance(hero) < 15:
                 print("You was kill")
+                enemie.my_bullet.reset()
+                enemie.my_bullet.hideturtle()
+                enemie.my_bullet.color(SCREEN_BG_COLOR)
+                enemie.my_bullet.set_max_flag(False)
                 game_core.loose_life()
+                break
 
     # hero fire
     if len(hero.bullets) > 0:
@@ -122,14 +127,19 @@ while True:
             if len(enemies) > 0:
                 for index in range(len(enemies)):
                     if hero.bullets[bullet_idx].distance(enemies[index]) < 15:
+                        # is enemie fire
+                        if enemies[index].get_fire_flag() is True:
+                            enemies[index].my_bullet.reset()
+                            enemies[index].my_bullet.hideturtle()
+                            enemies[index].my_bullet.color(SCREEN_BG_COLOR)
+                            enemies[index].my_bullet.set_max_flag(False)
+
                         enemies[index].hideturtle()
                         enemies[index].reset()
                         enemies[index].color(SCREEN_BG_COLOR)
                         enemies.pop(index)
                         is_target_hit = True
                         scoreboard.set_curr_score()
-                        # todo: remove enemie bullet if its fire
-                        # todo: life down
                         # todo: new game
                         # todo: poprawić tworzenie wrogów
                         # todo: wyświetlić tabeli wyników z max
