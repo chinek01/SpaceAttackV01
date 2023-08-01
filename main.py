@@ -117,6 +117,10 @@ while True:
                 enemie.my_bullet.color(SCREEN_BG_COLOR)
                 enemie.my_bullet.set_max_flag(False)
                 game_core.loose_life()
+                scoreboard.set_life_info(
+                    game_core.cur_life
+                )
+                scoreboard.refresh()
                 break
 
     # hero fire

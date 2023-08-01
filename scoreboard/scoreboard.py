@@ -200,6 +200,7 @@ class Scoreboard(Turtle):
         self.penup()
         self.color(self._text_color)
 
+        # current score
         first_x = self.screen_width / 4
         first_y = -self.screen_height / 2 + self._frame_height / 2
 
@@ -209,6 +210,18 @@ class Scoreboard(Turtle):
         )
         self.write(
             f'Current score: {self._curr_score}',
+            font=FONT
+        )
+
+        # current life
+        first_x = -self.screen_width / 2 + 50
+
+        self.goto(
+            first_x,
+            first_y
+        )
+        self.write(
+            f"Life: {self._life_info}",
             font=FONT
         )
 
