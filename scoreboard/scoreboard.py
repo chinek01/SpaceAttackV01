@@ -130,6 +130,23 @@ class Scoreboard(Turtle):
         except Exception as e:
             print(f"Something bad happened {e.__str__()}")
 
+    def add_curr_result(self,
+                        name: str):
+
+        if name is None:
+            raise ValueError("The Name value must be set!")
+
+        if not isinstance(name, str):
+            raise TypeError("The Name value must be string type!")
+
+        self._curr_result = [name, str(self._curr_score)]
+        self._score_data.append(self._curr_result)
+
+        self._save_results_to_file()
+        self._find_max_score()
+
+        self._curr_score = 0
+
     def _save_results_to_file(self):
         """
         Save results to file
@@ -139,7 +156,7 @@ class Scoreboard(Turtle):
         try:
             with open(self.score_file_path, 'w', newline='') as file:
                 writer = csv.writer(file)
-                writer.writerow(self._score_data)
+                writer.writerows(self._score_data)
         except Exception as e:
             print(f"Something bad happened {e.__str__()}")
 
@@ -168,6 +185,9 @@ class Scoreboard(Turtle):
     def set_curr_score(self):
         self._curr_score += 1
         self.refresh()
+
+    def get_curr_score(self):
+        return self._curr_score
 
     def _frame(self):
         """

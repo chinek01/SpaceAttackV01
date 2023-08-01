@@ -177,6 +177,11 @@ while game_core.get_game_over_flag():
     else:
         pass
 
+if game_core.get_game_over_flag() is False and scoreboard.get_curr_score() > 0:
+    game_core.set_win_name()
+    scoreboard.add_curr_result(game_core.name)
+
+
 # ------------------------------ exit ------------------------------
 screen.exitonclick()
 
