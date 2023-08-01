@@ -245,6 +245,22 @@ class Scoreboard(Turtle):
             font=FONT
         )
 
+        # max result
+        msg = f"Max score: name -> {self._max_score[0]} -> result: {self._max_score[1]}"
+
+        first_x = -(int((len(msg)/2) * 7))
+        first_y = first_y - 25
+
+        self.goto(
+            first_x,
+            first_y
+        )
+
+        self.write(
+            msg,
+            font=FONT
+        )
+
 
 # some test
 if __name__ == '__main__':
